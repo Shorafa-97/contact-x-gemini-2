@@ -1,42 +1,50 @@
-using ContactsX.API.Middleware;
-using ContactsX.Infrastructure.DependencyInjection;
-using ContactsX.Persistence.DatabBaseContext;
-using Microsoft.EntityFrameworkCore;
-using FastEndpoints;
+    using ContactsX.API.Middleware;
+    using ContactsX.Infrastructure.DependencyInjection;
+    using ContactsX.Persistence.DatabBaseContext;
+    using Microsoft.EntityFrameworkCore;
+    using FastEndpoints;
+    using FastEndpoints.Swagger;
+    using ContactsX.Application;
 
-var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddInfrastructure();
-builder.Services.AddControllers();
-builder.Services.AddFastEndpoints();
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ContactsX.Application.Features.Contacts.Handlers.CreateContactHandler).Assembly));
 
-builder.Services.AddEndpointsApiExplorer();
+    var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddInfrastructure();
+    // builder.Services.AddControllers();
+    builder.Services.AddFastEndpoints();
+    builder.Services.AddApplicationServices();
+    builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ContactsX.Application.ApplicationServiceRegistration).Assembly));
+
+
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddAuthorization();
+
+    builder.Services.SwaggerDocument(options =>
     {
-        Title = "ContactsX API",
-        Version = "v1",
-        Description = "ContactsX Backend API"
+        options.DocumentSettings = s =>
+        {
+            s.Title = "ContactsX API";
+            s.Version = "v1";
+            s.Description = "ContactsX Backend API";
+        };
     });
-});
 
-var app = builder.Build();
+    var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+    app.UseSwaggerGen();
 
-app.UseMiddleware<ExceptionMiddleware>();
+    app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseHttpsRedirection();
+    app.UseHttpsRedirection();
 
-app.UseAuthorization();
-app.UseFastEndpoints();
-app.MapControllers();
+    app.UseAuthorization();
+    app.UseFastEndpoints();
 
-app.Run();
+    // app.MapControllers();
+
+    app.Run();

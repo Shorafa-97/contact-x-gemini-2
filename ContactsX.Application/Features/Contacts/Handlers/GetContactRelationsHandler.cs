@@ -39,21 +39,22 @@ public class GetContactRelationsHandler : IRequestHandler<GetContactRelationsQue
                 StartDate = rel.StartDate,
                 EndDate = rel.EndDate,
                 CreatedAt = rel.CreatedAt,
-                Entity = entity == null ? null : new EntityDto
-                {
-                    Id = entity.Id,
-                    NameEn = entity.NameEn,
-                    NameAr = entity.NameAr,
-                    Type = entity.Type,
-                    Country = entity.Country,
-                    Sector = entity.Sector,
-                    RegistrationId = entity.RegistrationId,
-                    ParentEntityId = entity.ParentEntityId,
-                    Addresses = JsonSerializer.Deserialize<List<AddressDto>>(entity.Addresses),
-                    ContactPoints = JsonSerializer.Deserialize<List<ContactPointDto>>(entity.ContactPoints),
-                    ProfileCompleteness = entity.ProfileCompleteness,
-                    IsActive = entity.IsActive
-                }
+                Entity = entity == null ? null : new EntityDto(
+                    entity.Id,
+                    entity.NameEn,
+                    entity.NameAr,
+                    entity.Type.ToString(),
+                    entity.Country,
+                    entity.Sector,
+                    entity.RegistrationId,
+                    entity.ParentEntityId,
+                    JsonSerializer.Deserialize<List<AddressDto>>(entity.Addresses),
+                    JsonSerializer.Deserialize<List<ContactPointDto>>(entity.ContactPoints),
+                    entity.ProfileCompleteness,
+                    entity.IsActive,
+                    entity.CreatedAt,
+                    entity.UpdatedAt ?? entity.CreatedAt
+                )
             });
         }
 
