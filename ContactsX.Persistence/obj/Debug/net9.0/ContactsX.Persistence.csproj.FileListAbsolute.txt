@@ -1,0 +1,17 @@
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/bin/Debug/net9.0/ContactsX.Persistence.deps.json
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/bin/Debug/net9.0/ContactsX.Persistence.runtimeconfig.json
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/bin/Debug/net9.0/ContactsX.Persistence.dll
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/bin/Debug/net9.0/ContactsX.Persistence.pdb
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/bin/Debug/net9.0/ContactsX.Domain.dll
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/bin/Debug/net9.0/ContactsX.Domain.pdb
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/ContactsX.Persistence.csproj.AssemblyReference.cache
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/ContactsX.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/ContactsX.Persistence.AssemblyInfoInputs.cache
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/ContactsX.Persistence.AssemblyInfo.cs
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/ContactsX.Persistence.csproj.CoreCompileInputs.cache
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/Contacts.27F8AFB1.Up2Date
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/ContactsX.Persistence.dll
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/refint/ContactsX.Persistence.dll
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/ContactsX.Persistence.pdb
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/ContactsX.Persistence.genruntimeconfig.cache
+/Users/abdelrahmanelshorafa/Documents/work/ContactX-Gemini-2/ContactsX.Persistence/obj/Debug/net9.0/ref/ContactsX.Persistence.dll

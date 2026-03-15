@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ContactsX.API/ContactsX.API.csproj" />
+  <Project Path="ContactsX.Application/ContactsX.Application.csproj" />
+  <Project Path="ContactsX.Core/ContactsX.Domain.csproj" />
+  <Project Path="ContactsX.Infrastructure/ContactsX.Infrastructure.csproj" />
+  <Project Path="ContactsX.Persistence/ContactsX.Persistence.csproj" Id="30f6efc8-76c6-45b7-bf64-14abdc8387d6" />
+</Solution>
