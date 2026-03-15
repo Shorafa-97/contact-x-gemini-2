@@ -1,0 +1,14 @@
+ContactsX.API/bin/*
+ContactsX.API/obj/*
+
+ContactsX.Application/bin/*
+ContactsX.Application/obj/*
+
+ContactsX.Infrastructure/bin/*
+ContactsX.Infrastructure/obj/*
+
+ContactsX.Persistence/bin/*
+ContactsX.Persistence/obj/*
+
+ContactsX.Core/bin/*
+ContactsX.Core/obj/*
