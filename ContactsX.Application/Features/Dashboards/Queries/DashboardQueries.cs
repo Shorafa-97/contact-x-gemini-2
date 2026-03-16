@@ -7,4 +7,5 @@ public record GetDashboardStatsQuery() : IRequest<DashboardStats>;
 public record GetExecutiveDashboardQuery() : IRequest<ExecutiveDashboardData>;
 public record GetGovernanceDashboardQuery() : IRequest<GovernanceDashboardData>;
 public record GetOperationalDashboardQuery() : IRequest<OperationalDashboardData>;
-public record GetDuplicateMetricsQuery() : IRequest<DuplicateMetrics>;
+public record GetDashboardDuplicateMetricsQuery() : IRequest<DashboardDuplicateMetrics>;
+

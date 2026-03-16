@@ -8,7 +8,7 @@ public class GetDashboardDataHandlers :
     IRequestHandler<GetExecutiveDashboardQuery, ExecutiveDashboardData>,
     IRequestHandler<GetGovernanceDashboardQuery, GovernanceDashboardData>,
     IRequestHandler<GetOperationalDashboardQuery, OperationalDashboardData>,
-    IRequestHandler<GetDuplicateMetricsQuery, DuplicateMetrics>
+    IRequestHandler<GetDashboardDuplicateMetricsQuery, DashboardDuplicateMetrics>
 {
     public Task<ExecutiveDashboardData> Handle(GetExecutiveDashboardQuery request, CancellationToken cancellationToken)
         => Task.FromResult(new ExecutiveDashboardData());
@@ -19,6 +19,6 @@ public class GetDashboardDataHandlers :
     public Task<OperationalDashboardData> Handle(GetOperationalDashboardQuery request, CancellationToken cancellationToken)
         => Task.FromResult(new OperationalDashboardData());
 
-    public Task<DuplicateMetrics> Handle(GetDuplicateMetricsQuery request, CancellationToken cancellationToken)
-        => Task.FromResult(new DuplicateMetrics());
+    public Task<DashboardDuplicateMetrics> Handle(GetDashboardDuplicateMetricsQuery request, CancellationToken cancellationToken)
+        => Task.FromResult(new DashboardDuplicateMetrics());
 }

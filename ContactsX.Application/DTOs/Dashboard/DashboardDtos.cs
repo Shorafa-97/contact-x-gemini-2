@@ -16,4 +16,5 @@ public record DashboardStats(
 public record ExecutiveDashboardData();
 public record GovernanceDashboardData();
 public record OperationalDashboardData();
-public record DuplicateMetrics();
+public record DashboardDuplicateMetrics();
+

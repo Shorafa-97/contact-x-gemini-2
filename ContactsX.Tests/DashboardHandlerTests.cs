@@ -49,6 +49,6 @@ public class DashboardHandlerTests
         (await handler.Handle(new GetExecutiveDashboardQuery(), default)).Should().NotBeNull();
         (await handler.Handle(new GetGovernanceDashboardQuery(), default)).Should().NotBeNull();
         (await handler.Handle(new GetOperationalDashboardQuery(), default)).Should().NotBeNull();
-        (await handler.Handle(new GetDuplicateMetricsQuery(), default)).Should().NotBeNull();
+        (await handler.Handle(new GetDashboardDuplicateMetricsQuery(), default)).Should().NotBeNull();
     }
 }
