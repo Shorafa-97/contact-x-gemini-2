@@ -1,14 +1,14 @@
-ContactsX.API/bin/*
-ContactsX.API/obj/*
+[Bb]in/
+[Oo]bj/
 
-ContactsX.Application/bin/*
-ContactsX.Application/obj/*
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-ContactsX.Infrastructure/bin/*
-ContactsX.Infrastructure/obj/*
-
-ContactsX.Persistence/bin/*
-ContactsX.Persistence/obj/*
-
-ContactsX.Core/bin/*
-ContactsX.Core/obj/*
+# Build results
+[Tt]est[Rr]esults/
+[Cc]heckout/
+[Pp]ublish/
