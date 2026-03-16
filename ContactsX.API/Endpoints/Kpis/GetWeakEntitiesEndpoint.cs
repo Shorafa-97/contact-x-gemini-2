@@ -1,20 +1,28 @@
+using FastEndpoints;
 using MediatR;
 using ContactsX.Application.Features.Kpis.Queries;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Mvc;
+using ContactsX.Application.DTOs.Entity;
 
 namespace ContactsX.API.Endpoints.Kpis;
 
-public static class GetWeakEntitiesEndpoint
+public class GetWeakEntitiesEndpoint : Endpoint<GetWeakEntitiesQuery, IEnumerable<EntityDto>>
 {
-    public static void MapGetWeakEntities(this RouteGroupBuilder group)
+    private readonly IMediator _mediator;
+
+    public GetWeakEntitiesEndpoint(IMediator mediator)
     {
-        group.MapGet("/weak-entities", async ([FromQuery] int limit, IMediator mediator) =>
-        {
-            var result = await mediator.Send(new GetWeakEntitiesQuery(limit > 0 ? limit : 50));
-            return Results.Ok(result);
-        });
+        _mediator = mediator;
+    }
+
+    public override void Configure()
+    {
+        Get("weak-entities");
+        Group<KpiGroup>();
+    }
+
+    public override async Task HandleAsync(GetWeakEntitiesQuery req, CancellationToken ct)
+    {
+        var result = await _mediator.Send(req, ct);
+        await HttpContext.Response.SendAsync(result, cancellation: ct);
     }
 }

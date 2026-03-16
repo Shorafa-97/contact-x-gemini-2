@@ -1,29 +1,40 @@
+using FastEndpoints;
 using MediatR;
 using ContactsX.Application.Features.Import.Commands;
+using ContactsX.Application.DTOs.Import;
 using System.Text.Json;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 
 namespace ContactsX.API.Endpoints.Import;
 
-public static class ImportEntities
+public class ImportEntitiesEndpoint : Endpoint<ImportEntitiesCommand, ImportResultDto>
 {
-    public static void MapImportEntities(this RouteGroupBuilder group)
+    private readonly IMediator _mediator;
+
+    public ImportEntitiesEndpoint(IMediator mediator)
     {
-        group.MapPost("/entities", async (JsonElement[] records, IMediator mediator) =>
-        {
-            var result = await mediator.Send(new ImportEntitiesCommand(records));
-            return Results.Ok(result);
-        })
-        .AddEndpointFilter(async (context, next) =>
-        {
-            var records = context.GetArgument<JsonElement[]>(0);
-            if (records == null || records.Length == 0)
-            {
-                return Results.BadRequest(new { message = "The import list must contain at least one item." });
-            }
-            return await next(context);
+        _mediator = mediator;
+    }
+
+    public override void Configure()
+    {
+        Post("entities");
+        Group<ImportGroup>();
+        Summary(s => {
+            s.Description = "Import entities from a list of JSON objects.";
+            s.Responses[200] = "Successfully imported some or all entities.";
+            s.Responses[400] = "Invalid input data.";
         });
+    }
+
+    public override async Task HandleAsync(ImportEntitiesCommand req, CancellationToken ct)
+    {
+        if (req.Records == null || req.Records.Length == 0)
+        {
+            await HttpContext.Response.SendAsync(new ImportResultDto(0, new List<string> { "Request payload cannot be empty." }), 400, cancellation: ct);
+            return;
+        }
+
+        var result = await _mediator.Send(req, ct);
+        await HttpContext.Response.SendAsync(result, cancellation: ct);
     }
 }

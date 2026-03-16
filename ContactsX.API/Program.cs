@@ -1,8 +1,6 @@
-using ContactsX.API.Endpoints.Import;
-    using ContactsX.API.Endpoints.Kpis;
-    using ContactsX.API.Middleware;
+using ContactsX.API.Middleware;
+using ContactsX.Infrastructure.DependencyInjection;
 
-    using ContactsX.Infrastructure.DependencyInjection;
     using ContactsX.Persistence.DatabBaseContext;
     using Microsoft.EntityFrameworkCore;
     using FastEndpoints;
@@ -47,22 +45,5 @@ using ContactsX.API.Endpoints.Import;
 
     app.UseAuthorization();
     app.UseFastEndpoints();
-    
-    var importGroup = app.MapGroup("/api/import");
-    importGroup.MapImportContacts();
-    importGroup.MapImportEntities();
-
-    var kpiGroup = app.MapGroup("/api/kpis");
-    kpiGroup.MapGetWeakContacts();
-    kpiGroup.MapGetWeakEntities();
-    kpiGroup.MapGetOrphanContacts();
-    kpiGroup.MapGetOrphanEntities();
-    kpiGroup.MapGetVipIncompleteContacts();
-
-
-
-
-
-    // app.MapControllers();
 
     app.Run();

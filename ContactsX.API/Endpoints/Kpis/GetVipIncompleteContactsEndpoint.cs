@@ -1,19 +1,28 @@
+using FastEndpoints;
 using MediatR;
 using ContactsX.Application.Features.Kpis.Queries;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
+using ContactsX.Application.DTOs.Contact;
 
 namespace ContactsX.API.Endpoints.Kpis;
 
-public static class GetVipIncompleteContactsEndpoint
+public class GetVipIncompleteContactsEndpoint : EndpointWithoutRequest<IEnumerable<ContactDto>>
 {
-    public static void MapGetVipIncompleteContacts(this RouteGroupBuilder group)
+    private readonly IMediator _mediator;
+
+    public GetVipIncompleteContactsEndpoint(IMediator mediator)
     {
-        group.MapGet("/vip-incomplete", async (IMediator mediator) =>
-        {
-            var result = await mediator.Send(new GetVipIncompleteContactsQuery());
-            return Results.Ok(result);
-        });
+        _mediator = mediator;
+    }
+
+    public override void Configure()
+    {
+        Get("vip-incomplete");
+        Group<KpiGroup>();
+    }
+
+    public override async Task HandleAsync(CancellationToken ct)
+    {
+        var result = await _mediator.Send(new GetVipIncompleteContactsQuery(), ct);
+        await HttpContext.Response.SendAsync(result, cancellation: ct);
     }
 }

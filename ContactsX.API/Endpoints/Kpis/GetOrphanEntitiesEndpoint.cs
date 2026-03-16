@@ -1,19 +1,28 @@
+using FastEndpoints;
 using MediatR;
 using ContactsX.Application.Features.Kpis.Queries;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
+using ContactsX.Application.DTOs.Entity;
 
 namespace ContactsX.API.Endpoints.Kpis;
 
-public static class GetOrphanEntitiesEndpoint
+public class GetOrphanEntitiesEndpoint : EndpointWithoutRequest<IEnumerable<EntityDto>>
 {
-    public static void MapGetOrphanEntities(this RouteGroupBuilder group)
+    private readonly IMediator _mediator;
+
+    public GetOrphanEntitiesEndpoint(IMediator mediator)
     {
-        group.MapGet("/orphan-entities", async (IMediator mediator) =>
-        {
-            var result = await mediator.Send(new GetOrphanEntitiesQuery());
-            return Results.Ok(result);
-        });
+        _mediator = mediator;
+    }
+
+    public override void Configure()
+    {
+        Get("orphan-entities");
+        Group<KpiGroup>();
+    }
+
+    public override async Task HandleAsync(CancellationToken ct)
+    {
+        var result = await _mediator.Send(new GetOrphanEntitiesQuery(), ct);
+        await HttpContext.Response.SendAsync(result, cancellation: ct);
     }
 }

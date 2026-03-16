@@ -16,6 +16,8 @@ public class AppDbContext : DbContext
     public DbSet<Contact> Contacts { get; set; }
     public DbSet<Relation> Relations { get; set; }
     public DbSet<DuplicateCandidate> DuplicateCandidates { get; set; }
+    public DbSet<AuditLog> AuditLogs { get; set; }
+
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
