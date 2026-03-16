@@ -1,4 +1,6 @@
+    using ContactsX.API.Endpoints.Import;
     using ContactsX.API.Middleware;
+
     using ContactsX.Infrastructure.DependencyInjection;
     using ContactsX.Persistence.DatabBaseContext;
     using Microsoft.EntityFrameworkCore;
@@ -44,6 +46,12 @@
 
     app.UseAuthorization();
     app.UseFastEndpoints();
+    
+    var importGroup = app.MapGroup("/api/import");
+    importGroup.MapImportContacts();
+    importGroup.MapImportEntities();
+
+
 
     // app.MapControllers();
 
